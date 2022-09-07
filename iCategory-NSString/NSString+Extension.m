@@ -13,7 +13,7 @@
 + (void)initialize
 {
     // Call original initialize method
-    // [NSString invokeOriginalMethod:self selector:_cmd];      // uncomment me ~~~, or change +initialize method to +load method
+//    [NSString invokeOriginalMethod:self selector:_cmd];      // uncomment me ~~~, or change +initialize method to +load method
 }
 
 
