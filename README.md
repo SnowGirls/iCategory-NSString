@@ -1,5 +1,7 @@
 # iCategory-NSString
 
+`Tested on iOS 15.6.1`
+
 ### A. Step to recurrence of EXC_BAD_ACCESS Crash on PHCollection.localizedTitle
 ##### 1. Open `Photos` App, switch to Albums tab, tap Add + icon -> New Album -> input the name you want. 
 ##### 2. Repeat the first step to create more than two albums.
@@ -13,6 +15,6 @@
     // [NSString invokeOriginalMethod:self selector:_cmd];
         
         
-##### 2. Or just change +initialize method to +load method, that is donot create the +initialize on any NSString category
+##### 2. Or just change `+initialize` method to `+load` method, that is donot create the `+initialize` on any `NSString` category
 
 
