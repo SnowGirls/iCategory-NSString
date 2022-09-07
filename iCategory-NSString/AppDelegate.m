@@ -20,10 +20,10 @@
     
     AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (status == PHAuthorizationStatusRestricted || status == PHAuthorizationStatusDenied) {
-        NSLog(@"authorization camera privilege status: %@", status);
+        NSLog(@"authorization camera/photo privilege status: %@", status);
     }
     if (![AppDelegate hasPhotoPermissions]) {
-        
+        NSLog(@"authorization camera/photo privilege denied");
     }
     return YES;
 }

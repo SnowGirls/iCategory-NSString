@@ -57,6 +57,7 @@
 		001BEA3428C7724300B07545 /* iCategory_NSStringUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iCategory_NSStringUITestsLaunchTests.m; sourceTree = "<group>"; };
 		001BEA4128C772B800B07545 /* NSString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		001BEA4228C772B800B07545 /* NSString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		009182BC28C888E900FE633D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 		001BEA0028C7724100B07545 = {
 			isa = PBXGroup;
 			children = (
+				009182BC28C888E900FE633D /* README.md */,
 				001BEA0B28C7724100B07545 /* iCategory-NSString */,
 				001BEA2728C7724300B07545 /* iCategory-NSStringTests */,
 				001BEA3128C7724300B07545 /* iCategory-NSStringUITests */,
