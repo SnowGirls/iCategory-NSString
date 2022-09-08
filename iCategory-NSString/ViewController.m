@@ -28,10 +28,11 @@
     [super viewDidLoad];
     
     // You can disable NSTaggedPointer by implement + (void)initialize method with a NSString+Category
-    Class clazz = [[NSString stringWithUTF8String:"123"] class];
+    NSString *pointer = [NSString stringWithUTF8String:"123"];
+    Class clazz = [pointer class];
     NSString *clazzName = [[NSString alloc] initWithFormat:@"%@", clazz];
     BOOL isEnableTaggedPointer = [clazzName containsString:@"TaggedPointer"];
-    NSLog(@"Tagged Pointer String enable or not: %d, %@", isEnableTaggedPointer, clazzName);
+    NSLog(@"Tagged Pointer String enable or not: %d, %@, %d", isEnableTaggedPointer, clazzName, isTaggedPointer(pointer));
     
     NSString *format = @"Tagged Pointer String enable status: %@";
     NSString *enableString = [NSString stringWithFormat:format, isEnableTaggedPointer ? @"TRUE" : @"FALSE"];
@@ -78,33 +79,34 @@
     NSLog(@"------->>>>> shortTitle: %s, %@", (const char *)class_getName([model.shortTitle class]), model.shortTitle);
     
     NSString *result = @"";
-    NSString *strS = NULL;
+    NSString *str = NULL;
     NSString *line = NULL;
     NSString *format = @"%@ : %p, %@";
+    NSString *lineFormat = @"%@\n%@";
     
-    strS = @"1234567";
-    line = [NSString stringWithFormat:format , strS.class, strS, strS];
-    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    str = @"1234567";
+    line = [NSString stringWithFormat:format , str.class, str, str];
+    result = [NSString stringWithFormat:lineFormat, result, line];
     NSLog(@"%@", line);
     
-    strS = [NSString stringWithUTF8String:"1234567"];       // length 7
-    line = [NSString stringWithFormat:format , strS.class, strS, strS];
-    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    str = [NSString stringWithUTF8String:"1234567"];       // length 7
+    line = [NSString stringWithFormat:format , str.class, str, str];
+    result = [NSString stringWithFormat:lineFormat, result, line];
     NSLog(@"%@", line);
     
-    strS = [NSString stringWithUTF8String:"abcdabcd"];      // length 8
-    line = [NSString stringWithFormat:format , strS.class, strS, strS];
-    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    str = [NSString stringWithUTF8String:"abcdabcd"];      // length 8
+    line = [NSString stringWithFormat:format , str.class, str, str];
+    result = [NSString stringWithFormat:lineFormat, result, line];
     NSLog(@"%@", line);
     
-    strS = [NSString stringWithUTF8String:"eeeeeeeeeee"];   // length 11
-    line = [NSString stringWithFormat:format , strS.class, strS, strS];
-    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    str = [NSString stringWithUTF8String:"eeeeeeeeeee"];   // length 11
+    line = [NSString stringWithFormat:format , str.class, str, str];
+    result = [NSString stringWithFormat:lineFormat, result, line];
     NSLog(@"%@", line);
     
-    strS = [NSString stringWithUTF8String:"eeeeeeeeeeee"];  // length 12
-    line = [NSString stringWithFormat:format , strS.class, strS, strS];
-    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    str = [NSString stringWithUTF8String:"eeeeeeeeeeee"];  // length 12
+    line = [NSString stringWithFormat:format , str.class, str, str];
+    result = [NSString stringWithFormat:lineFormat, result, line];
     NSLog(@"%@", line);
     
     NSLog(@"\n\n----------------- NSTaggedPointerString END -----------------");
@@ -114,3 +116,6 @@
 
 
 @end
+
+
+
