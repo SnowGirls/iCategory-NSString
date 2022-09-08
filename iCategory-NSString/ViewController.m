@@ -27,61 +27,89 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // First, open Photos App, and add some album with name manually ~~~
+    // You can disable NSTaggedPointer by implement + (void)initialize method with a NSString+Category
+    Class clazz = [[NSString stringWithUTF8String:"123"] class];
+    NSString *clazzName = [[NSString alloc] initWithFormat:@"%@", clazz];
+    BOOL isEnableTaggedPointer = [clazzName containsString:@"TaggedPointer"];
+    NSLog(@"Tagged Pointer String enable or not: %d, %@", isEnableTaggedPointer, clazzName);
+    
+    NSString *format = @"Tagged Pointer String enable status: %@";
+    NSString *enableString = [NSString stringWithFormat:format, isEnableTaggedPointer ? @"TRUE" : @"FALSE"];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 50, 300, 250)];
+    textView.scrollEnabled = TRUE;
+    
+    NSString *string = [self checkIfTaggedPointerEnable];
+    [textView setText:[NSString stringWithFormat:@"%@\n%@", enableString, string]];
+    [self.view addSubview:textView];
+    
+    // First, open Photos App, and add some album with a short album name input manually ~~~
     
     // Second, run this app and grant all photo permissions, the click the button below ~~~
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 200, 50)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 300, 200, 50)];
     [button setTitle:@"Click me" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(clickMe:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
+}
+
+- (void)clickMe:(UIButton *)button {
+    PHFetchResult *userAlbums = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
     
-    
+    for (PHAssetCollection *collection in userAlbums) {
+        // Access the collection.localizedTitle, he is a NSTaggedPointerString when album name is short
+        NSString *string = collection.localizedTitle;
+        
+        // Send message to collection.localizedTitle, aka call objc_msgSend
+        // Will crash when reach userAlbums. if you have a NSString category with + (void)initialize method override
+        NSLog(@">>>>>>>>>>>> album name: %@", [string description]);
+        
+        // Uncomment the `[NSString invokeOriginalMethod:self selector:_cmd];` code in file NSString+Extension.m , then will not crash :P
+        // Try yourself :)
+    }
+}
+
+- (NSString *)checkIfTaggedPointerEnable {
     NSLog(@"\n\n----------------- NSTaggedPointerString CHECK -----------------");
     
     TaggedPointerModel* model = [[TaggedPointerModel alloc] init];
     NSLog(@"------->>>>> longTitle: %s, %@",(const char *)class_getName([model.longTitle class]),  model.longTitle);
     NSLog(@"------->>>>> shortTitle: %s, %@", (const char *)class_getName([model.shortTitle class]), model.shortTitle);
     
-    NSString *strS = @"1234567";
-    NSLog(@"%@ : %p, %@", strS.class, strS, strS);
+    NSString *result = @"";
+    NSString *strS = NULL;
+    NSString *line = NULL;
+    NSString *format = @"%@ : %p, %@";
+    
+    strS = @"1234567";
+    line = [NSString stringWithFormat:format , strS.class, strS, strS];
+    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    NSLog(@"%@", line);
     
     strS = [NSString stringWithUTF8String:"1234567"];       // length 7
-    NSLog(@"%@ : %p, %@", strS.class, strS, strS);
+    line = [NSString stringWithFormat:format , strS.class, strS, strS];
+    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    NSLog(@"%@", line);
     
     strS = [NSString stringWithUTF8String:"abcdabcd"];      // length 8
-    NSLog(@"%@ : %p, %@", strS.class, strS, strS);
+    line = [NSString stringWithFormat:format , strS.class, strS, strS];
+    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    NSLog(@"%@", line);
     
     strS = [NSString stringWithUTF8String:"eeeeeeeeeee"];   // length 11
-    NSLog(@"%@ : %p, %@", strS.class, strS, strS);
+    line = [NSString stringWithFormat:format , strS.class, strS, strS];
+    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    NSLog(@"%@", line);
     
     strS = [NSString stringWithUTF8String:"eeeeeeeeeeee"];  // length 12
-    NSLog(@"%@ : %p, %@", strS.class, strS, strS);
+    line = [NSString stringWithFormat:format , strS.class, strS, strS];
+    result = [NSString stringWithFormat:@"%@\n%@", result, line];
+    NSLog(@"%@", line);
     
     NSLog(@"\n\n----------------- NSTaggedPointerString END -----------------");
-}
-
-- (void)clickMe:(UIButton *)button {
-    PHFetchResult *photoStreamAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumMyPhotoStream options:nil];
-    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    PHFetchResult *syncedAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumSyncedAlbum options:nil];
-    PHFetchResult *sharedAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumCloudShared options:nil];
-    PHFetchResult *userAlbums = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
-    
-    NSArray *albums = @[photoStreamAlbums, smartAlbums, syncedAlbums, sharedAlbums, userAlbums];
-    
-    for (int i = 0; i < albums.count; i++) {
-        PHFetchResult *fetchResult = albums[i];
-        for (PHAssetCollection *collection in fetchResult) {
-            // Access the collection.localizedTitle
-            
-            // Will crash when reach userAlbums. if you have a NSString category with + (void)initialize method override
-            NSLog(@">>>>>>>>>>>> album name: %@", collection.localizedTitle);
-            
-            // Uncomment the `[NSString invokeOriginalMethod:self selector:_cmd];` code, then will not crash :P
-            // Try yourself :)
-        }
-    }
+    NSLog(@"\n\n");
+    return result;
 }
 
 

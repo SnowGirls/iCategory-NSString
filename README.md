@@ -1,12 +1,13 @@
 # iCategory-NSString
 
-`Tested on iOS 15.6.1`
+`Tested on iOS 15.5 and above`
 
 ### A. Step to recurrence of EXC_BAD_ACCESS Crash on PHCollection.localizedTitle
-##### 1. Open iPhone App `Photos`, switch to Albums tab, tap Add + icon -> New Album -> input the name you want. 
-##### 2. Repeat the first step to create more than two albums.
-##### 3. Open this Project `iCategory-NSString` and `Command + R` to Run
-##### 4. Grant all the photo/camera permission to App, then tap the 'Click me' button, will crash
+##### 1. Open iPhone App `Photos`, switch to Albums tab
+##### 2. Tap Add + icon -> New Album -> input a short album name, i.e. Abc
+##### 3. Repeat the first step to create more than two albums
+##### 4. Open this Project `iCategory-NSString` and `Command + R` to Run
+##### 5. Grant all the photo/camera permission to App, then tap the 'Click me' button, will crash
 
 
 ### B. Step to remove the crash
