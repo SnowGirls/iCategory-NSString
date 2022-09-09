@@ -1,14 +1,7 @@
-//
-//  NSString+Extension.m
-//  iCategory-NSString
-//
-//  Created by xpeng on 2022/9/6.
-//
-
-#import "NSString+Extension.h"
+#import "NSString+Category.h"
 #import <objc/runtime.h>
 
-@implementation NSString (Extension)
+@implementation NSString (Category)
 
 + (void)initialize
 {
@@ -26,19 +19,15 @@
     // Get the instance method list in class
     uint instCount;
     Method *instMethodList = class_copyMethodList(clazz, &instCount);
-    // Print to console
     for (int i = 0; i < instCount; i++) {
-        Method method = instMethodList[i];
-        NSLog(@"Category instance selector : %d %@", i, NSStringFromSelector(method_getName(method)));
+        NSLog(@"Category instance selector : %d %@", i, NSStringFromSelector(method_getName(instMethodList[i])));
     }
     
     // Get the class method list in meta class
     uint metaCount;
     Method *metaMethodList = class_copyMethodList(metaClazz, &metaCount);
-    // Print to console
     for (int i = 0; i < metaCount; i++) {
-        Method method = metaMethodList[i];
-        NSLog(@"Category class selector : %d %@", i, NSStringFromSelector(method_getName(method)));
+        NSLog(@"Category class selector : %d %@", i, NSStringFromSelector(method_getName(metaMethodList[i])));
     }
     
     NSLog(@"Category ---> instance method count: %d, class method count: %d", instCount, metaCount);
@@ -50,8 +39,7 @@
         IMP implementation = method_getImplementation(method);
         if (name == selector) {
             NSLog(@"Category instance method found & call original ~~~");
-            // id (*IMP)(id, SEL, ...)
-            ((void (*)(id, SEL))implementation)(target, name);
+            ((void (*)(id, SEL))implementation)(target, name); // id (*IMP)(id, SEL, ...)
             break;
         }
     }
@@ -64,8 +52,7 @@
         IMP implementation = method_getImplementation(method);
         if (name == selector) {
             NSLog(@"Category class method found & call original ~~~");
-            // id (*IMP)(id, SEL, ...)
-            ((void (*)(id, SEL))implementation)(target, name);
+            ((void (*)(id, SEL))implementation)(target, name); // id (*IMP)(id, SEL, ...)
             break;
         }
     }

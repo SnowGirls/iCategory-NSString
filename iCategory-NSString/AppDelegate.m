@@ -1,10 +1,3 @@
-//
-//  AppDelegate.m
-//  iCategory-NSString
-//
-//  Created by xpeng on 2022/9/6.
-//
-
 #import "AppDelegate.h"
 #import <Photos/Photos.h>
 

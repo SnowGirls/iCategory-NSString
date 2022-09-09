@@ -1,10 +1,3 @@
-//
-//  iCategory_NSStringTests.m
-//  iCategory-NSStringTests
-//
-//  Created by xpeng on 2022/9/6.
-//
-
 #import <XCTest/XCTest.h>
 
 @interface iCategory_NSStringTests : XCTestCase

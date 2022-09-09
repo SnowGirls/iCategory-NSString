@@ -17,7 +17,7 @@
 
 ### B. Solutions to remove the crash
 
-##### Just uncomment the line in `NSString+Extension.m`, calling the original `+initialize` method
+##### Just uncomment the line in `NSString+Category.m`, calling the original `+initialize` method
     
     [NSString invokeOriginalMethod:self selector:_cmd];
     
