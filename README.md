@@ -19,7 +19,7 @@
 
 ##### Just uncomment the line in `NSString+Category.m`, calling the original `+initialize` method
     
-    [NSString invokeOriginalMethod:self selector:_cmd];
+    [ObjcUtil invokeOriginalMethod:self selector:_cmd];
     
         
 ##### Or just change `+initialize` to `+load`, do not create the `+initialize` on any `NSString` category

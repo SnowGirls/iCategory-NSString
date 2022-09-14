@@ -1,7 +1,8 @@
 #import "ViewController.h"
 
+#import "ObjcUtil.h"
+
 #import <mach-o/dyld.h>
-#import <objc/runtime.h>
 #import <malloc/malloc.h>
 
 #import <UIKit/UIKit.h>
@@ -63,8 +64,8 @@
         // Will crash when reach userAlbums. if you have a NSString category with + (void)initialize method override
         NSLog(@">>>>>>>>>>>> album name: %@", [string description]);
         
-        // Uncomment the `[NSString invokeOriginalMethod:self selector:_cmd];` code in file NSString+Category.m , then will not crash :P
-        // Try yourself :)
+        // Uncomment the `[ObjcUtil invokeOriginalMethod:self selector:_cmd];` code in file NSString+Category.m
+        // Then will not crash :P, Try it yourself :)
     }
 }
 

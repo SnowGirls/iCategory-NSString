@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0016E8E328CEEDD300E2246C /* ObjcUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0016E8E228CEEDD300E2246C /* ObjcUtil.m */; };
 		001BEA0E28C7724100B07545 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BEA0D28C7724100B07545 /* AppDelegate.m */; };
 		001BEA1128C7724100B07545 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BEA1028C7724100B07545 /* SceneDelegate.m */; };
 		001BEA1428C7724100B07545 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 001BEA1328C7724100B07545 /* ViewController.m */; };
@@ -38,7 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0016E8E028CB1CD800E2246C /* objc-internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "objc-internal.h"; sourceTree = "<group>"; };
+		0016E8E128CEEDD300E2246C /* ObjcUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcUtil.h; sourceTree = "<group>"; };
+		0016E8E228CEEDD300E2246C /* ObjcUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcUtil.m; sourceTree = "<group>"; };
 		001BEA0928C7724100B07545 /* iCategory-NSString.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iCategory-NSString.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		001BEA0C28C7724100B07545 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		001BEA0D28C7724100B07545 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		001BEA3428C7724300B07545 /* iCategory_NSStringUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iCategory_NSStringUITestsLaunchTests.m; sourceTree = "<group>"; };
 		001BEA4128C772B800B07545 /* NSString+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Category.h"; sourceTree = "<group>"; };
 		001BEA4228C772B800B07545 /* NSString+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Category.m"; sourceTree = "<group>"; };
+		003A278728D1A1C700C8F434 /* objc-internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "objc-internal.h"; sourceTree = "<group>"; };
 		009182BC28C888E900FE633D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -110,7 +113,7 @@
 		001BEA0B28C7724100B07545 /* iCategory-NSString */ = {
 			isa = PBXGroup;
 			children = (
-				0016E8E028CB1CD800E2246C /* objc-internal.h */,
+				003A278728D1A1C700C8F434 /* objc-internal.h */,
 				001BEA0C28C7724100B07545 /* AppDelegate.h */,
 				001BEA0D28C7724100B07545 /* AppDelegate.m */,
 				001BEA0F28C7724100B07545 /* SceneDelegate.h */,
@@ -124,6 +127,8 @@
 				001BEA1E28C7724300B07545 /* main.m */,
 				001BEA4128C772B800B07545 /* NSString+Category.h */,
 				001BEA4228C772B800B07545 /* NSString+Category.m */,
+				0016E8E128CEEDD300E2246C /* ObjcUtil.h */,
+				0016E8E228CEEDD300E2246C /* ObjcUtil.m */,
 			);
 			path = "iCategory-NSString";
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				001BEA0E28C7724100B07545 /* AppDelegate.m in Sources */,
 				001BEA1F28C7724300B07545 /* main.m in Sources */,
 				001BEA1128C7724100B07545 /* SceneDelegate.m in Sources */,
+				0016E8E328CEEDD300E2246C /* ObjcUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
