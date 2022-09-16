@@ -1,6 +1,6 @@
 # iCategory-NSString
 
-`Tested on iOS 15.5 and above`
+`Tested on iOS 15.0 and above`
 
 ### A. Step to recurrence of EXC_BAD_ACCESS Crash on PHCollection.localizedTitle
 
@@ -25,3 +25,4 @@
 ##### Or just change `+initialize` to `+load`, do not create the `+initialize` on any `NSString` category
 
 
+[Blog here](https://blog.csdn.net/WOTors/article/details/126771656)
